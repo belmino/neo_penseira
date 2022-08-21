@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "live-server src --verbose",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "live-server src --verbose --no-browser",
+    "lint:init": "eslint --init",
+    "lint": "eslint --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "live-server": "^1.2.2"
   }
 }
