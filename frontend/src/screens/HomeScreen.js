@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import data from '../data.js';
 
 const HomeScreen = {
@@ -10,7 +11,7 @@ const HomeScreen = {
       (product) => /* html */`
                         <li>
                             <div class="product">
-                            <a href="/#/product/${product._id}">
+                            <a href="/#/product/${product.id}">
                                 <img src="${product.image}" alt="${product.name}" />
                             </a>
                             <div class="product-name">
