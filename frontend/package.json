@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start0": "webpack-dev-server",
-    "start": "live-server --verbose --no-browser",
+    "start": "webpack-dev-server",
+    "build": "webpack",
     "lint:init": "eslint --init",
     "lint": "eslint --fix"
   },
