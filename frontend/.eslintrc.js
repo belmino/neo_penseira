@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: 'airbnb-base',
+  extends: ['airbnb-base', 'prettier'],
   overrides: [
   ],
   parserOptions: {
@@ -11,5 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-console': 0,
+    'import/prefer-default-export': 0,
   },
 };

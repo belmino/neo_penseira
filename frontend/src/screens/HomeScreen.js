@@ -1,5 +1,4 @@
-/* eslint-disable import/extensions */
-// import data from '../data.js';
+import Rating from "../components/Rating";
 
 const HomeScreen = {
   render: async () => {
@@ -12,30 +11,36 @@ const HomeScreen = {
       return '<div>Error in getting data</div>';
     }
     const products = await response.json();
-    return /* html */`
+    return `
         <ul class="products">
         ${products
     .map(
-      (product) => /* html */`
-                        <li>
-                            <div class="product">
-                            <a href="/#/product/${product.id}">
-                                <img src="${product.image}" alt="${product.name}" />
-                            </a>
-                            <div class="product-name">
-                            <a href="/#/product/1">
-                                ${product.name}
-                            </a>
-                            </div>
-                            <div class="product-brand">
-                            ${product.brand}
-                            </div>
-                            <div class="product-price">
-                            $${product.price}
-                            </div>
-                            </div>
-                        </li>
-                    `,
+      (product) => `
+      <li>
+        <div class="product">
+          <a href="/#/product/${product.id}">
+              <img src="${product.image}" alt="${product.name}" />
+          </a>
+          <div class="product-name">
+            <a href="/#/product/1">
+                ${product.name}
+            </a>
+          </div>
+          <div class="product-rating">
+            ${Rating.render({
+              value: product.rating,
+              text: `${product.numReviews} reviews`,
+            })}
+          </div>
+          <div class="product-brand">
+            ${product.brand}
+          </div>
+          <div class="product-price">
+            $${product.price}
+          </div>
+        </div>
+      </li>
+                `,
     )
     .join('\n')}
         </ul>
