@@ -1,10 +1,13 @@
 /* eslint-disable import/extensions */
 import express from 'express';
+import expressAsyncHandler from 'express-async-handler';
+
 import User from '../models/userModel.js';
+import { generateToken } from '../utils.js';
 
 const userRouter = express.Router();
 
-userRouter.get('/createadmin', async (req, res) => {
+userRouter.get('/createadmin', expressAsyncHandler(async (req, res) => {
   try {
     const user = new User({
       name: 'admin',
@@ -17,5 +20,30 @@ userRouter.get('/createadmin', async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-});
+}));
+
+
+userRouter.post(
+  '/signin',
+  expressAsyncHandler(async (req, res) => {
+    const signinUser = await User.findOne({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    if (!signinUser) {
+      res.status(401).send({
+        message: 'Invalid Email or Password',
+      });
+    } else {
+      res.send({
+        id: signinUser.id,
+        name: signinUser.name,
+        email: signinUser.email,
+        isAdmin: signinUser.isAdmin,
+        token: generateToken(signinUser),
+      });
+    }
+  })
+);
+
 export default userRouter;
