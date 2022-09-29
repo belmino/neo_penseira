@@ -3,13 +3,13 @@ import { hideLoading, showLoading } from "../utils";
 
 const HomeScreen = {
   render: async () => {
-    // showLoading();
+    showLoading();
     const response = await fetch('http://localhost:5000/api/products', {
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    // hideLoading()
+    hideLoading()
     if (!response || !response.ok) {
       return '<div>Error in getting data</div>';
     }

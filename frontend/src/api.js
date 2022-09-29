@@ -43,6 +43,9 @@ export const signin = async ({ email, password }) => {
 
   } catch (err) {
     console.log(err);
-    return { error: err.response.data.message || err.message };
+    if (err.response) {
+      return { error: err.response.data.message};
+    } 
+    return { error: err.message };
   }
 };
